@@ -19,6 +19,11 @@ class Bien_immo():
         self.cellar = cellar
         self.garage = garage
         self.output = output
+    
+    def tojson(self):
+        return 
 
     def __str__(self):
-        return f"ref: {self.ref}\nsurface habitable: {self.area_m2} m²\nprix: {self.output}"
+        return f"ref: {self.ref}\ncity: {self.city}\ncounty: {self.county}\ndistrict: {self.district}\nsurface habitable: {self.area_m2} m²\
+            \nNombre de pièces: {self.nb_room}\nNombre de chambres: {self.nb_bedroom}\npiscine: {self.pool}\ncave: {self.cellar}\
+            \ngarage: {self.garage}\nprix: {self.output}"
