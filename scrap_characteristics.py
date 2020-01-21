@@ -23,8 +23,8 @@ print(characteristics)
 
 bien_immo = Bien_immo(ref=ref)
 
-# Surface habitable (area_m2)
 for characteristic in characteristics:
+# Surface habitable (area_m2)
     if re.match("\d{1,} m² de surface habitable", characteristic):
         bien_immo.area_m2 = float(characteristic.split(" ")[0])
 # Surface terrain (ground_m2)       

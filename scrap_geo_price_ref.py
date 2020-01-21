@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -- coding: utf-8 --
+# -*- coding: utf-8 -*-
 
 
 import requests
@@ -8,7 +8,6 @@ import re
 
 r = requests.get("https://www.green-acres.fr/fr/properties/59682a-greg3556.htm", headers={'Accept-Language' : "fr-FR"})
 soup = BeautifulSoup(r.content, 'html.parser')
-
 
 informations = soup.find(class_="item-content-part price item-ecology")
 environment = []
