@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import pickle
-import sklearn
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -28,6 +28,7 @@ def predict():
         request.form['cellar'],
         request.form['garage'],
     ]]
+    input_data = pd.DataFrame(data=input_data, columns=['city','county','district','area_m2','ground_m2','nb_room','nb_bedroom','pool','cellar','garage'])
 
     model = pickle.load(open('./model.file', 'rb'))
     output = model.predict(input_data)
