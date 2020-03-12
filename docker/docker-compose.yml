@@ -1,0 +1,22 @@
+version: "3.0"
+services:
+  realestate:
+    build:
+      context: .
+    container_name: realestate
+    image: jupyter-image-custom2
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    ports:
+      - 8888:8888
+      - 6006:6006
+      - 5000:5000
+    volumes:
+      - ../../:/usr/src/realestate
+    env_file: 
+      - auth.env
+    command: /opt/conda/bin/jupyter notebook --notebook-dir=/usr/src/realestate --ip='0.0.0.0' --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+    
