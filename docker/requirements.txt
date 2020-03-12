@@ -11,7 +11,7 @@ umap-learn
 sklearn
 xgboost
 seaborn
-tensorflow==2.0.0
+tensorflow==2.0.1
 keras
 opencv-contrib-python
 graphviz
