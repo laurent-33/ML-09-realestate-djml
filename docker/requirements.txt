@@ -18,5 +18,3 @@ graphviz
 plotly
 tensorboard
 flask
-azureml-sdk
-azureml-opendatasets
