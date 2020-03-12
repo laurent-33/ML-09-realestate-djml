@@ -1,4 +1,5 @@
-docker
+auth.env
+docker-compose.override.yml
 csv
 .ipynb_checkpoints
 __pycache__
