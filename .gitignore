@@ -1,0 +1,6 @@
+docker
+csv
+.ipynb_checkpoints
+__pycache__
+.Rhistory
+.~lock.dataset_final.csv#
