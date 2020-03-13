@@ -8,6 +8,7 @@ from bien_immo import Bien_immo
 from scrap import scrap, get_refs, get_nb_pages
 import pandas as pd
 import csv
+from datetime import date
 
 
 fieldnames = ["ref", "city", "county", "district",
@@ -26,5 +27,5 @@ for page in range(1, get_nb_pages() + 1):
     print(f"page {page} scrappée!")
 
     if page%10 == 0:
-        biens_df.to_csv("dataset_final.csv")
+        biens_df.to_csv("dataset_final_" + str(date.today()) + ".csv")
         print("10 pages (240 biens immo) ajoutées au csv!")
