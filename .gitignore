@@ -1,7 +1,7 @@
 auth.env
 docker-compose.override.yml
-csv
-.ipynb_checkpoints
+csv/
+.ipynb_checkpoints/
 __pycache__
 .Rhistory
 .~lock.dataset_final.csv#
