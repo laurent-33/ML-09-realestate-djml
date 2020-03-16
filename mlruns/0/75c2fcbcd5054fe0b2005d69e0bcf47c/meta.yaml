@@ -1,0 +1,15 @@
+artifact_uri: file:///usr/src/realestate/mlruns/0/75c2fcbcd5054fe0b2005d69e0bcf47c/artifacts
+end_time: 1584369015794
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 75c2fcbcd5054fe0b2005d69e0bcf47c
+run_uuid: 75c2fcbcd5054fe0b2005d69e0bcf47c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1584368943450
+status: 3
+tags: []
+user_id: root

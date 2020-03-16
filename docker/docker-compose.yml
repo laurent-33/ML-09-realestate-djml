@@ -15,7 +15,7 @@ services:
       - 6006:6006
     volumes:
       - ../:/usr/src/realestate
-    env_file: 
+    env_file:
       - auth.env
     command: sh -c "
       cd ../../usr/src/realestate
@@ -33,8 +33,25 @@ services:
       - 5000:5000
     volumes:
       - ../:/usr/src/realestate
-    env_file:
-      - auth.env
     command: sh -c "
       cd ../../usr/src/realestate
       && python api_flask.py"
+
+  realestate_mlflow:
+    container_name: realestate_mlflow
+    image: jupyter-image-custom2
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    expose:
+      - "3000"
+    ports:
+      - 3000:3000
+    volumes:
+      - ../:/usr/src/realestate
+    command: sh -c "
+      cd ../../usr/src/realestate
+      && mlflow server --host "0.0.0.0:3000""
+    
