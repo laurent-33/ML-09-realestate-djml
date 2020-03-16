@@ -1,5 +1,4 @@
 FROM jupyter/scipy-notebook
-FROM jupyter/r-notebook
 
 USER root
 COPY requirements.txt /tmp/
