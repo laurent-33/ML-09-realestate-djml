@@ -1,0 +1,9 @@
+ref,city,county,district,area_m2,ground_m2,nb_room,nb_bedroom,pool,cellar,garage,output
+654a-123,Bordeaux,Gironde,Nouvelle Aquitaine,47,47,1,0,0,0,0,120000
+654a-124,Bègles,Gironde,Nouvelle Aquitaine,54,54,2,1,0,1,0,130000
+654a-125,Bordeaux,Gironde,Nouvelle Aquitaine,38,38,1,0,0,1,1,75000
+654a-126,Bordeaux,Gironde,Nouvelle Aquitaine,42,42,1,0,0,0,0,89000
+654a-127,Mérignac,Gironde,Nouvelle Aquitaine,71,71,3,2,0,0,0,220000
+654a-128,Bayonne,Pyrénées Atlantiques,Nouvelle Aquitaine,75,75,4,2,1,1,0,180000
+654a-129,Mérignac,Gironde,Nouvelle Aquitaine,44,44,1,0,0,1,1,94000
+654a-130,Bègles,Gironde,Nouvelle Aquitaine,42,42,2,1,0,0,0,107000

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reale State DjML</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Estimation</a>
+    </nav>
+
+    <p>Ce bien est estimé à : {{Prix}}</p>
+
+    <p>If you want a new estimate :</p>
+    <form action="/predict" method="post">
+        <label for="city">City :</label>
+            <input type="text" id="city" name="city"/>
+            <label for="county">County :</label>
+            <input type="text" id="county" name="county"/>
+            <label for="district">District :</label>
+            <input type="text" id="district" name="district"/>
+            <label for="area_m2">Area en m2 :</label>
+            <input type="number" id="area_m2" name="area_m2"/>
+            <label for="ground_m2">Ground en m2 :</label>
+            <input type="number" id="ground_m2" name="ground_m2"/>
+            <label for="nb_room">Number of room :</label>
+            <input type="number" id="nb_room" name="nb_room"/>
+            <label for="nb_bedroom">Number of bedroom :</label>
+            <input type="number" id="nb_bedroom" name="nb_bedroom"/>
+            <label for="pool">Pool :</label>
+            <input type="text" id="pool" name="pool"/>
+            <label for="cellar">Cellar :</label>
+            <input type="text" id="cellar" name="cellar"/>
+            <label for="garage">Garage ou Parking :</label>
+            <input type="text" id="garage" name="garage"/>
+        <button>Submit</button>
+    </form>
+    
+</body>
+</html>
