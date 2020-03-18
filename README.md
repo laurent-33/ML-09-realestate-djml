@@ -1,42 +1,28 @@
 # Projet Realestate (01/2020)
 
-## Méthode d'importation du projet et mise en oeuvre
+Machine Learning Project - Prediction House Prices (terrain, appartement ou maison) en Aquitaine
 
-1. Récupération des fichiers :
-    - se placer dans le dossier parent
-    - ouvrir un terminal de commande à partir de ce dossier
-    - taper la commande suivante pour commencer le téléchargement :  
-    `$ git clone https://github.com/Simplon-IA-Bdx-1/realestate-djml.git`
-    - renommer le lien remote si besoin avec cette commande :  
-    `$ git remote rename origin <nom_de_la_remote>`
-    - se placer sur la branche master :  
-    `$ git checkout master`
-    - initialiser le workflow (branches develop, feature , ...) :  
-    `$ git flow init`
-    - valider les noms par défauts qui s'affichent (touche "entrée" plusieurs fois)
+## Pré-requis
 
-2. Avant toute modification, récupérer les dernières versions des branches principales :
-    - Pour passer d'une branche à l'autre :  
-    `$ git checkout <nom_de_la_branche_destination (master ou develop)>`
-    - Appliquer cette commande sous les branches master et develop :  
-    `$ git pull`
+* Git
+* Docker
 
-3. Afin de garder la branche master propre, nous utilisons des branches features séparées :  
-    - aller sur la branche develop si vous n'y êtes pas déjà  
-    `$ git checkout develop`
-    - créer une nouvelle branche feature (branche de travail)  
-    `$ git flow feature start <prénom_de_la_personne-nom_de_la_modification>`
-    - intégrer dans git les fichiers modifiés  
-    `$ git add <nom_du_fichier>`
-    - commit des modifications sur la branche feature  
-    `$ git commit -m "<nom_du_contibuteur> : <action_effectuée>"`
-    - autres commits
-    - clôturer la branche feature (la branche est supprimée définitivement)  
-    `$ git flow feature finish`
-    - nous nous retrouvons automatiquement sur la branche develop qui a intégrée les modifications précédentes, vous pouvez le vérifier avec la commande suivante :
-    `$ git branch`
-    - avant d'envoyer vos modifications, il faut au préalable récupérer la dernière version de la branche develop (si d'autres personnes ont travaillé entre-temps dessus) :
-    `$ git pull`
-    - traiter les éventuelles collisions, si vous êtes dans une étape de merging (avec VS code par exemple)
-    - vous pouvez ensuite mettre à jour le dépôt distant avec vos dernières modifications :  
-    `$ git push`
+## Usages
+
+* Utilisez `git clone` pour récupérer le repo en locale sur votre laptop.
+* Pour le fichier `auth.env`, reprendre le `auth-a-remplir.env` dans le dossier `docker/`, le renommer et remplacer par vos identifiants et vos mots de passe.
+* Une fois tous les dossiers et fichiers créés, en ligne de commande, se positionner dans le dossier `docker`.
+* Puis lancer une commande `docker-compose up --build` pour démarrer le container.
+
+Vous aurez maintenant accès à notre outil de prédiction de biens immobiliers à l'adresse `localhost:5000/`.
+
+Vous n'avez alors qu'à rentrer les informations du bien que vous souhaitez estimer et cliquez sur le bouton `Submit`.
+
+## Précautions d'usages
+
+Il se peut que lors de certaines connexions, la mise en route de notre outil prenne un peu de temps :
+
+* Si c'est votre première utilisation, il faut laisser le temps à tous nos outils sous-jacents de s'installer,
+* Si vous avez déjà utilisé notre outil, vous pouvez avoir une mise à jour des données qui empêche son utilisation immédiate.
+
+@DJML (Damien Thiberge, Julien Lagoutte, Mehdi Ikbal, Laurent Pacquet).
