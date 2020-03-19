@@ -30,7 +30,7 @@ def start_scrap():
 
         
         if page%10 == 0:
-            biens_df.to_csv("dataset_final_" + str(date.today()) + ".csv")
+            biens_df.to_csv("../csv/dataset_final_" + str(date.today()) + ".csv")
 
 
 if __name__ == '__main__':

@@ -18,10 +18,11 @@ def get_predict():
 def predict():
     input_data = [[
        request.form['city'],
-       request.form['county'],
-       request.form['district'],
-       request.form['area_m2'],
-       request.form['ground_m2'],
+       request.form['departement'],
+       request.form['region'],
+       request.form['type'],
+       request.form['living_area_m2'],
+       request.form['lot_size_m2'],
        request.form['nb_room'],
        request.form['nb_bedroom'],
        request.form['pool'],
@@ -29,7 +30,7 @@ def predict():
        request.form['garage'],
     ]]
 
-    input_data = pd.DataFrame(data=input_data, columns=['city','county','district','area_m2','ground_m2','nb_room','nb_bedroom','pool','cellar','garage'])
+    input_data = pd.DataFrame(data=input_data, columns=['city','county','district','type','living_area_m2','lot_size_m2','nb_room','nb_bedroom','pool','cellar','garage'])
 
     full_pipe = pickle.load(open('./full_pipe.file', 'rb'))
     output = int(full_pipe.predict(input_data)[0])
