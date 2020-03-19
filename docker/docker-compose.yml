@@ -54,4 +54,17 @@ services:
     command: sh -c "
       cd ../../usr/src/realestate
       && mlflow server --host "0.0.0.0:3000""
-    
+
+  realestate_app:
+    container_name: realestate_app
+    image: jupyter-image-custom2
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    volumes:
+      - ../:/usr/src/realestate
+    command: sh -c "
+      cd ../../usr/src/realestate/scripts
+      && python app.py"
