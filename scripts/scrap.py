@@ -29,4 +29,4 @@ for page in range(1, nb_pages + 1):
 
     
     if page%10 == 0:
-        biens_df.to_csv("dataset_final_" + str(date.today()) + ".csv")
+        biens_df.to_csv("../csv/dataset_final_" + str(date.today()) + ".csv")

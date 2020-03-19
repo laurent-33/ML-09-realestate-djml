@@ -35,12 +35,12 @@ def scrap(ref):
 
     # Département (departement)
     if len(emplacement) == 10:
-        bien_immo.county = emplacement[7]
+        bien_immo.departement = emplacement[7]
     if len(emplacement) == 11:
-        bien_immo.county = emplacement[8]
+        bien_immo.departement = emplacement[8]
     
     # Région (region)
-    bien_immo.district = emplacement[-1][:-2]
+    bien_immo.region = emplacement[-1][:-2]
     
     for characteristic in characteristics:
     # Surface habitable (living_area_m2)
