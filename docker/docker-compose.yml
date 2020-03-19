@@ -18,7 +18,7 @@ services:
     env_file:
       - auth.env
     command: sh -c "
-      cd ../../usr/src/realestate
+      cd ../../usr/src/realestate/scripts
       && jupyter notebook --ip='0.0.0.0' --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''"
     
   realestate_api:
@@ -34,7 +34,7 @@ services:
     volumes:
       - ../:/usr/src/realestate
     command: sh -c "
-      cd ../../usr/src/realestate
+      cd ../../usr/src/realestate/scripts
       && python api_flask.py"
 
   realestate_mlflow:
