@@ -52,7 +52,7 @@ services:
     volumes:
       - ../:/usr/src/realestate
     command: sh -c "
-      cd ../../usr/src/realestate
+      cd ../../usr/src/realestate/scripts
       && mlflow server --host "0.0.0.0:3000""
 
   realestate_app:
@@ -64,6 +64,8 @@ services:
         max-size: 50m
     volumes:
       - ../:/usr/src/realestate
+    environment:
+      - PYTHONUNBUFFERED=1
     command: sh -c "
       cd ../../usr/src/realestate/scripts
       && python app.py"
