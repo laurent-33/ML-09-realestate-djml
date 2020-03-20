@@ -58,7 +58,6 @@ services:
   realestate_app:
     container_name: realestate_app
     image: jupyter-image-custom2
-    restart: unless-stopped
     logging:
       driver: json-file
       options:
