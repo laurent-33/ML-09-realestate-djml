@@ -1,7 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 import glob
 import nbformat
 from datetime import date, timedelta
+from dateutil import parser
 from nbconvert.preprocessors import ExecutePreprocessor, CellExecutionError
 from scrap import start_scrap
 
@@ -36,17 +40,19 @@ csv_files = glob.glob('../csv/dataset_final_*.csv')
 # get the last date a csv file was created
 if csv_files:
     csv_dates = [
-        date.fromisoformat(csv_file[-14:-4])
+        parser.parse(csv_file[-14:-4], dayfirst = True).date()
         for csv_file in csv_files
         ]
     csv_last_date = max(csv_dates)
+else :
+    csv_last_date = date((date.today().year - 1), date.today().month, date.today().day)
 
 # determine if new data has to be collected (too old)
 days_before_new_scrap = 6
 if csv_files == [] or date.today() > csv_last_date + timedelta(days=days_before_new_scrap):
     print("\nNew data collection needed:")
     print("1/1 - new scrap running (5-60 minutes)\n..........")
-    start_scrap()
+    start_scrap(csv_last_date)
     csv_last_date = date.today()
 
 # get the last model date
