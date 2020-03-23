@@ -2,17 +2,16 @@ from flask import Flask, render_template, request
 import pickle
 import pandas as pd
 from datetime import date
+import csv
 
 app = Flask(__name__)
 
 features = ['predict_date','city','county','district','type','living_area_m2','lot_size_m2','nb_room','nb_bedroom','pool','cellar','garage','predict_price']
 
 df_prediction = pd.DataFrame(columns=features)
-df_prediction.to_csv("../csv/predictions.csv")
+df_prediction.to_csv("../csv/predictions.csv", encoding='utf-8', index=False)
 
-# @app.route('/')
-# def hello_world():
-#     return render_template('index.html')
+
 
 @app.route('/')
 def get_predict():
@@ -21,10 +20,10 @@ def get_predict():
 @app.route('/get_prediction', methods=['POST'])
 def predict():
     input_data_form = [[
-       request.form['city'],
-       request.form['departement'],
-       request.form['region'],
-       request.form['type'],
+       request.form['city'].lower(),
+       request.form['departement'].lower(),
+       request.form['region'].lower(),
+       request.form['type'].lower(),
        request.form['living_area_m2'],
        request.form['lot_size_m2'],
        request.form['nb_room'],
@@ -44,13 +43,15 @@ def predict():
     full_pipe = pickle.load(open('../models/full_pipe.file', 'rb'))
     output = int(full_pipe.predict(input_data)[0])
 
-    df = pd.read_csv("../csv/predictions.csv")
+# Enregistrement dans un fichier csv de la prediction
     predict_date = date.today()
     input_data_form[0].insert(0,predict_date)
     input_data_form[0].insert(len(input_data_form[0]), output)
-    prediction = pd.DataFrame(input_data_form, columns=features)
-    df.append(prediction)
-    df.to_csv("../csv/predictions.csv")
+
+    with open("../csv/predictions.csv", 'a') as csvfile:
+        writer = csv.writer(csvfile)
+        for row in input_data_form:
+            writer.writerow(row)
     
     print('résultat : ', output)
 
