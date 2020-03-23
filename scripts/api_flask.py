@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 from datetime import date
 import csv
+import numpy as np
 
 app = Flask(__name__)
 
@@ -11,18 +12,22 @@ features = ['predict_date','city','county','district','type','living_area_m2','l
 df_prediction = pd.DataFrame(columns=features)
 df_prediction.to_csv("../csv/predictions.csv", encoding='utf-8', index=False)
 
-
+#List of unique element in dataset
+list_html = pd.read_csv('../csv/list_html.csv')
+list_ville = sorted(np.array(list_html['list_ville']))
+list_dpt = sorted(np.array(list_html['list_departement']))
+list_region = sorted(np.array(list_html['list_region']))
 
 @app.route('/')
 def get_predict():
-    return render_template('get_prediction.html')
+    return render_template('get_prediction.html', city_list = list_ville)
 
 @app.route('/get_prediction', methods=['POST'])
 def predict():
     input_data_form = [[
-       request.form['city'].lower(),
-       request.form['departement'].lower(),
-       request.form['region'].lower(),
+       request.form['city'].capitalize(),
+       request.form['departement'].capitalize(),
+       request.form['region'].capitalize(),
        request.form['type'].lower(),
        request.form['living_area_m2'],
        request.form['lot_size_m2'],
@@ -59,7 +64,7 @@ def predict():
 
 @app.route('/new_prediction', methods=['POST'])
 def get_predict2():
-    return render_template('get_prediction.html')
+    return render_template('get_prediction.html', city_list = list_ville)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

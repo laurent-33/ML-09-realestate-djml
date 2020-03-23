@@ -39,7 +39,12 @@
             </style>
             <div class="input-group">
                 <label class="input-group-text" for="city">City :</label>
-                <input type="text" id="city" name="city" class="form-control"/>
+                <select type="text" id="city" name="city" class="form-control">
+                    <option> </option>
+                    {% for i in city_list %}
+                        <option>{{ i }}</option>
+                    {% endfor %}
+                </select>
 
                 <label class="input-group-text" for="departement">Departement :</label>
                 <select type="text" id="departement" name="departement" class="form-control">
