@@ -10,16 +10,15 @@ features = ['predict_date','city','county','district','type','living_area_m2','l
 df_prediction = pd.DataFrame(columns=features)
 df_prediction.to_csv("../csv/predictions.csv")
 
+# @app.route('/')
+# def hello_world():
+#     return render_template('index.html')
+
 @app.route('/')
-def hello_world():
-    return render_template('index.html')
-
-
-@app.route('/predict/')
 def get_predict():
     return render_template('get_prediction.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/get_prediction', methods=['POST'])
 def predict():
     input_data_form = [[
        request.form['city'],
@@ -40,6 +39,8 @@ def predict():
         'nb_room','nb_bedroom','pool','cellar','garage'
         ])
 
+    print(input_data)
+
     full_pipe = pickle.load(open('../models/full_pipe.file', 'rb'))
     output = int(full_pipe.predict(input_data)[0])
 
@@ -55,6 +56,9 @@ def predict():
 
     return render_template('predict.html', Prix = output)
 
+@app.route('/new_prediction', methods=['POST'])
+def get_predict2():
+    return render_template('get_prediction.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

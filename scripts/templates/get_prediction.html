@@ -21,13 +21,13 @@
     
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">Estimation</a>
+            <a class="navbar-brand" href="/">Entrez les caractéristiques du bien à estimer :</a>
           </div>
       </nav>
 
     <div id="main">
-        <h1>Enter your property characteristics to estimate</h1>
-        <form action="/predict" method="post">
+        <h1>Entrez les caractéristiques du biens à estimer</h1>
+        <form action="/get_prediction" method="post">
             <style>
                 .input-group-prepend {
                     margin: 0.2%;
@@ -42,17 +42,26 @@
                 <input type="text" id="city" name="city" class="form-control"/>
 
                 <label class="input-group-text" for="departement">Departement :</label>
-                <input type="text" id="departement" name="departement" class="form-control"/>
+                <select type="text" id="departement" name="departement" class="form-control">
+                    <option>Gironde</option>
+                </select>
 
                 <label class="input-group-text" for="region">Region :</label>
-                <input type="text" id="region" name="region" class="form-control"/>
+                <select type="text" id="region" name="region" class="form-control">
+                    <option>Aquitaine</option>
+                </select>
             </div>
             
 
             <br>
             <div class="input-group">
                 <label class="input-group-text" for="type">Type de bien :</label>
-                <input type="text" id="type" name="type" class="form-control"/>
+                <select type="text" id="type" name="type" class="form-control">
+                    <option>appartement</option>
+                    <option>maison</option>
+                    <option>terrain</option>
+                    <option>autre</option>
+                </select>
 
                 <label class="input-group-text" for="living_area_m2">Surface du bien en m² :</label>
                 <input type="number" id="living_area_m2" name="living_area_m2" class="form-control"/>
@@ -75,13 +84,22 @@
             <br>
             <div class="input-group">
                 <label class="input-group-text" for="pool">Piscine :</label>
-                <input type="text" id="pool" name="pool" class="form-control"/>
+                <select type="text" id="pool" name="pool" class="form-control">
+                    <option>True</option>
+                    <option>False</option>
+                </select>
 
                 <label class="input-group-text" for="cellar">Cave :</label>
-                <input type="text" id="cellar" name="cellar" class="form-control"/>
+                <select type="text" id="cellar" name="cellar" class="form-control">
+                    <option>True</option>
+                    <option>False</option>
+                </select>
 
                 <label class="input-group-text" for="garage">Garage ou Parking :</label>
-                <input type="text" id="garage" name="garage" class="form-control"/>
+                <select type="text" id="garage" name="garage" class="form-control">
+                    <option>True</option>
+                    <option>False</option>
+                </select>
             </div>
             
             <br>
