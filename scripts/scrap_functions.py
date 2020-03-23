@@ -10,7 +10,6 @@ from time import time
 from datetime import date
 
 def scrap(ref):
-    #start = time()
     r = requests.get(f"https://www.green-acres.fr{ref}", headers={'Accept-Language' : "fr-FR"})
     soup = BeautifulSoup(r.content, 'html.parser')
 
@@ -36,18 +35,18 @@ def scrap(ref):
         bien_immo.publish_date = parser.parse(div.prettify().partition(">\n</section>\n")[0][-11:-1], dayfirst = True).date()
     # Ville (city)
     if len(emplacement) == 10:
-        bien_immo.city = emplacement[5][:-1]
+        bien_immo.city = emplacement[5][:-1].lower()
     if len(emplacement) == 11:
-        bien_immo.city = emplacement[5]+" "+emplacement[6][:-1]
+        bien_immo.city = emplacement[5]+" "+emplacement[6][:-1].lower()
 
     # Département (departement)
     if len(emplacement) == 10:
-        bien_immo.departement = emplacement[7]
+        bien_immo.departement = emplacement[7].lower()
     if len(emplacement) == 11:
-        bien_immo.departement = emplacement[8]
+        bien_immo.departement = emplacement[8].lower()
     
     # Région (region)
-    bien_immo.region = emplacement[-1][:-2]
+    bien_immo.region = emplacement[-1][:-2].lower()
     
     for characteristic in characteristics:
     # Surface habitable (living_area_m2)
@@ -85,14 +84,14 @@ def scrap(ref):
     bien_immo.titre = titre
     check_match = set(titre.lower().split()) & set(types_bien)
     if check_match:
-        if list(check_match)[0] == "fond":
-            bien_immo.type = "fond de commerce"
+        if list(check_match)[0] == "villa":
+            bien_immo.type = "maison"
+        elif list(check_match)[0] in ["studio", "t1", "t2", "t3", "t4", "f1", "f2", "f3", "f4"]:
+            bien_immo.type = "appartement"
         else:
             bien_immo.type = list(check_match)[0]
     else:
         bien_immo.type = "autre"
-    #end = time()
-    #print(f"fonction scrap : {end-start}")
     return bien_immo.__dict__
 
 def get_refs(page):
@@ -112,3 +111,7 @@ def get_nb_pages():
     nb_biens = int(re.sub("\\xa0", "", nb_biens[3]))
     nb_pages = (nb_biens // 24) + 1
     return nb_pages
+
+if __name__ == '__main__':
+    ref = "/fr/properties/38078a-8500265552.htm"
+    scrap(ref)

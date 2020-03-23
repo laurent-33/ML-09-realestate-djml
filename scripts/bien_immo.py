@@ -22,8 +22,3 @@ class Bien_immo():
         self.cellar = cellar
         self.garage = garage
         self.output = output
-
-    def __str__(self):
-        return f"ref: {self.ref}\ncity: {self.city}\ndepartement: {self.departement}\nregion: {self.region}\nliving_area_m2: {self.living_area_m2}\
-            \nnb_room: {self.nb_room}\nnb_bedroom: {self.nb_bedroom}\npool: {self.pool}\ncellar: {self.cellar}\
-            \ngarage: {self.garage}\noutput: {self.output}"
