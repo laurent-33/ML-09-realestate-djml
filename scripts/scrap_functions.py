@@ -5,8 +5,12 @@ import requests
 from bs4 import BeautifulSoup
 import re, string
 from bien_immo import Bien_immo 
+from dateutil import parser
+from time import time
+from datetime import date
 
 def scrap(ref):
+    #start = time()
     r = requests.get(f"https://www.green-acres.fr{ref}", headers={'Accept-Language' : "fr-FR"})
     soup = BeautifulSoup(r.content, 'html.parser')
 
@@ -26,7 +30,10 @@ def scrap(ref):
         environment.append(p.get_text().strip())
 
     emplacement = environment[-1].split(" ")
-
+    #Date de publication (publish_date)
+    div = soup.find(class_="popularity")
+    if div:
+        bien_immo.publish_date = parser.parse(div.prettify().partition(">\n</section>\n")[0][-11:-1], dayfirst = True).date()
     # Ville (city)
     if len(emplacement) == 10:
         bien_immo.city = emplacement[5][:-1]
@@ -50,7 +57,7 @@ def scrap(ref):
         if re.match("\d+,?\d+? hectares de terrain", characteristic):
             bien_immo.lot_size_m2 = int(float(re.sub(",", ".", characteristic.split(" ")[0]))*10000)
         if re.match("\d{1,} m² de terrain", characteristic):
-            bien_immo.lot_size_m2 = characteristic.split(" ")[0]
+            bien_immo.lot_size_m2 = int(characteristic.split(" ")[0])
     # Nombre de pièces (nb_room)
         if re.match("\d{1,} pièces", characteristic):
             bien_immo.nb_room = int(characteristic.split(" ")[0])
@@ -84,7 +91,8 @@ def scrap(ref):
             bien_immo.type = list(check_match)[0]
     else:
         bien_immo.type = "autre"
-
+    #end = time()
+    #print(f"fonction scrap : {end-start}")
     return bien_immo.__dict__
 
 def get_refs(page):
@@ -103,4 +111,4 @@ def get_nb_pages():
     nb_biens = soup.find(class_="alert-title").get_text().split(" ")
     nb_biens = int(re.sub("\\xa0", "", nb_biens[3]))
     nb_pages = (nb_biens // 24) + 1
-    return nb_biens, nb_pages
+    return nb_pages

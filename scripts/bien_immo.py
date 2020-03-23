@@ -3,11 +3,12 @@
 
 class Bien_immo():
 
-    def __init__(self, ref = None, city = None, departement = None, region = None, titre = None, 
+    def __init__(self, ref = None, publish_date = None, city = None, departement = None, region = None, titre = None, 
                  type = None, living_area_m2 = None, lot_size_m2 = None, nb_room = None,
                  nb_bedroom = None, pool = False, cellar = False, garage = False,
                  output = None):
         self.ref = ref
+        self.publish_date = publish_date
         self.city = city
         self.departement = departement
         self.region = region
