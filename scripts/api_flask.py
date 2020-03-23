@@ -37,7 +37,7 @@ def predict():
 
     input_data = pd.DataFrame(data=input_data_form, columns=['city','county','district','type','living_area_m2','lot_size_m2','nb_room','nb_bedroom','pool','cellar','garage'])
 
-    full_pipe = pickle.load(open('./models/full_pipe.file', 'rb'))
+    full_pipe = pickle.load(open('../models/full_pipe.file', 'rb'))
     output = int(full_pipe.predict(input_data)[0])
 
     df = pd.read_csv("../csv/predictions.csv")

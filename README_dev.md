@@ -40,3 +40,11 @@
     - traiter les éventuelles collisions, si vous êtes dans une étape de merging (avec VS code par exemple)
     - vous pouvez ensuite mettre à jour le dépôt distant avec vos dernières modifications :  
     `$ git push`
+
+</br>
+
+## Pistes d'améliorations
+
+* Intégration d'une métrique personnalisée pour évaluer et comparer les modèles (MAPE ou médian APE)
+* Utilisation de la cross validation pour l'évaluation (Kfold de 10, ou autre)
+* 
