@@ -28,7 +28,7 @@ def get_predict():
 @app.route('/get_prediction', methods=['POST'])
 def predict():
     input_data_form = [[
-       request.form['city'].capitalize(),
+       request.form['city'],
        request.form['departement'].capitalize(),
        request.form['region'].capitalize(),
        request.form['type'].lower(),
