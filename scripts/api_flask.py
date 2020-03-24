@@ -14,9 +14,12 @@ df_prediction.to_csv("../csv/predictions.csv", encoding='utf-8', index=False)
 
 #List of unique element in dataset
 list_html = pd.read_csv('../csv/list_html.csv')
-list_ville = sorted(np.array(list_html['list_ville']))
-list_dpt = sorted(np.array(list_html['list_departement']))
-list_region = sorted(np.array(list_html['list_region']))
+list_ville = list(list_html['list_ville'].dropna())
+list_dpt = list(list_html['list_departement'].dropna())
+list_region = list(list_html['list_region'].dropna())
+list_ville.sort()
+list_dpt.sort()
+list_region.sort()
 
 @app.route('/')
 def get_predict():
