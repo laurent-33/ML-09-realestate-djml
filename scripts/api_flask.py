@@ -13,7 +13,7 @@ df_prediction = pd.DataFrame(columns=features)
 df_prediction.to_csv("../csv/predictions.csv", encoding='utf-8', index=False)
 
 #List of unique element in dataset
-list_html = pd.read_csv('../csv/list_html.csv')
+list_html = pd.read_csv('../templates/list_html.csv')
 list_ville = list(list_html['list_ville'].dropna())
 list_dpt = list(list_html['list_departement'].dropna())
 list_region = list(list_html['list_region'].dropna())

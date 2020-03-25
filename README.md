@@ -11,7 +11,8 @@ Machine Learning Project - Prediction House Prices (terrain, appartement ou mais
 
 * Utilisez `git clone` pour récupérer le repo en locale sur votre laptop.
 * Pour le fichier `auth.env`, reprendre le `auth-a-remplir.env` dans le dossier `docker/`, le renommer et remplacer par vos identifiants et vos mots de passe.
-* Une fois tous les dossiers et fichiers créés, en ligne de commande, se positionner dans le dossier `docker`.
+* Créer un dossier `csv/` à la racine du dossier.
+* Une fois tous les dossiers et fichiers créés, en ligne de commande, se positionner dans le dossier `docker/`.
 * Puis lancer une commande `docker-compose up --build` pour démarrer le container.
 
 Vous aurez maintenant accès à notre outil de prédiction de biens immobiliers à l'adresse `localhost:5000/`.
