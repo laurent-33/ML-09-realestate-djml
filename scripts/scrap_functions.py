@@ -37,7 +37,7 @@ def scrap(ref):
     if len(emplacement) == 10:
         bien_immo.city = emplacement[5][:-1].lower()
     if len(emplacement) == 11:
-        bien_immo.city = emplacement[5]+" "+emplacement[6][:-1].lower()
+        bien_immo.city = (emplacement[5]+" "+emplacement[6][:-1]).lower()
 
     # Département (departement)
     if len(emplacement) == 10:

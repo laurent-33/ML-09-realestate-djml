@@ -12,6 +12,7 @@ from scrap_functions import scrap, get_refs, get_nb_pages
 
 def start_scrap(last_csv_update_date):
     scrap_done = False
+    t_start = time()
     #check if data up to date
     if last_csv_update_date == date.today():
         scrap_done = True
@@ -37,7 +38,9 @@ def start_scrap(last_csv_update_date):
                     #for each ref scrap property infos
                     bien_immo = scrap(ref)
                     #check if scrapped property's publish date is post last update
-                    if bien_immo["publish_date"] == None or bien_immo["publish_date"] > last_csv_update_date:
+                    if (bien_immo["publish_date"] == None or bien_immo["publish_date"] > last_csv_update_date) \
+                            and time() - t_start < 10:
+
                         biens.append(bien_immo)
                     else:
                         scrap_done = True
