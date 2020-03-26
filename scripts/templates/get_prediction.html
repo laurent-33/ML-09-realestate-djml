@@ -27,7 +27,7 @@
 
     <div id="main">
         <h1>Entrez les caractéristiques du biens à estimer</h1>
-        <form action="/get_prediction" method="post">
+        <form action="/get_prediction" method="post" name="formSaisie" onsubmit="return valider()">
             <style>
                 .input-group-prepend {
                     margin: 0.2%;
@@ -124,7 +124,26 @@
                     margin : auto;
                     }
             </style>
-            <button type="submit" class="btn btn-primary" >Estimer</button>
+            <button id='submit_button' type="submit" class="btn btn-primary">Estimer</button>
+
+            <script>
+                function valider() 
+                {
+                    if((document.formSaisie.city.value != "") & (document.formSaisie.departement.value != "") & (document.formSaisie.region.value != "") &
+                    (document.formSaisie.type.value != "") & (document.formSaisie.living_area_m2.value != "") & (document.formSaisie.lot_size_m2.value != "") &
+                    (document.formSaisie.nb_room.value != "") & (document.formSaisie.nb_bedroom.value != "") & (document.formSaisie.pool.value != "") &
+                    (document.formSaisie.cellar.value != "") & (document.formSaisie.garage.value != "")) 
+                    {
+                        document.formSaisie.submit();
+                        return true;
+                    }
+                    else
+                    {
+                        alert("Choisissez une valeur pour tous les champs");
+                        return false;
+                    }
+                }
+            </script>
         </form>
     </div>
 </body>
