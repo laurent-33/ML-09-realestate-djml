@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Estimation</title>
+</head>
+<body>
+    <style>
+        .navbar-brand{
+            padding: 1%;
+            width: 20%;
+            color: white;
+        }
+        .navbar-brand:hover {
+            background-color: rgb(40, 134, 16);
+        }
+    </style>
+    
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Entrez les caractéristiques du bien à estimer :</a>
+          </div>
+      </nav>
+
+    <div id="main">
+        <h1>Entrez les caractéristiques du biens à estimer</h1>
+        <form action="/get_prediction" method="post" name="formSaisie" onsubmit="return valider()">
+            <style>
+                .input-group-prepend {
+                    margin: 0.2%;
+                }
+                .input-group-text {
+                    color: white;
+                    background-color: rgb(40, 134, 16);
+                }
+            </style>
+            <div class="input-group">
+                <label class="input-group-text" for="city">City :</label>
+                <select type="text" id="city" name="city" class="form-control">
+                    <option> </option>
+                    {% for i in city_list %}
+                        <option>{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <label class="input-group-text" for="departement">Departement :</label>
+                <select type="text" id="departement" name="departement" class="form-control">
+                    <option> </option>
+                    <option>Dordogne</option>
+                    <option>Gironde</option>
+                    <option>Landes</option>
+                    <option>Lot-et-Garonne</option>
+                    <option>Pyrénées-Atlantiques</option>
+                </select>
+
+                <label class="input-group-text" for="region">Region :</label>
+                <select type="text" id="region" name="region" class="form-control">
+                    <option> </option>
+                    <option>Aquitaine</option>
+                </select>
+            </div>
+            
+
+            <br>
+            <div class="input-group">
+                <label class="input-group-text" for="type">Type de bien :</label>
+                <select type="text" id="type" name="type" class="form-control">
+                    <option> </option>
+                    <option>Appartement</option>
+                    <option>Maison</option>
+                    <option>Terrain</option>
+                    <option>Autre</option>
+                </select>
+
+                <label class="input-group-text" for="living_area_m2">Surface du bien en m² :</label>
+                <input type="number" id="living_area_m2" name="living_area_m2" class="form-control"/>
+
+                <label class="input-group-text" for="lot_size_m2">Surface du terrain en m² :</label>
+                <input type="number" id="lot_size_m2" name="lot_size_m2" class="form-control"/>
+            </div>
+            
+
+            <br>
+            <div class="input-group">
+                <label class="input-group-text" for="nb_room">Nombre de pièces :</label>
+                <input type="number" id="nb_room" name="nb_room" class="form-control"/>
+
+                <label class="input-group-text" for="nb_bedroom">Nombre de chambres :</label>
+                <input type="number" id="nb_bedroom" name="nb_bedroom" class="form-control"/>
+            </div>
+            
+
+            <br>
+            <div class="input-group">
+                <label class="input-group-text" for="pool">Piscine :</label>
+                <select type="text" id="pool" name="pool" class="form-control">
+                    <option> </option>
+                    <option>True</option>
+                    <option>False</option>
+                </select>
+
+                <label class="input-group-text" for="cellar">Cave :</label>
+                <select type="text" id="cellar" name="cellar" class="form-control">
+                    <option> </option>
+                    <option>True</option>
+                    <option>False</option>
+                </select>
+
+                <label class="input-group-text" for="garage">Garage ou Parking :</label>
+                <select type="text" id="garage" name="garage" class="form-control">
+                    <option> </option>
+                    <option>True</option>
+                    <option>False</option>
+                </select>
+            </div>
+            
+            <br>
+            <style>
+                .btn {
+                    display: block;
+                    margin : auto;
+                    }
+            </style>
+            <button id='submit_button' type="submit" class="btn btn-primary">Estimer</button>
+
+            <script>
+                function valider() 
+                {
+                    if((document.formSaisie.city.value != "") & (document.formSaisie.departement.value != "") & (document.formSaisie.region.value != "") &
+                    (document.formSaisie.type.value != "") & (document.formSaisie.living_area_m2.value != "") & (document.formSaisie.lot_size_m2.value != "") &
+                    (document.formSaisie.nb_room.value != "") & (document.formSaisie.nb_bedroom.value != "") & (document.formSaisie.pool.value != "") &
+                    (document.formSaisie.cellar.value != "") & (document.formSaisie.garage.value != "")) 
+                    {
+                        document.formSaisie.submit();
+                        return true;
+                    }
+                    else
+                    {
+                        alert("Choisissez une valeur pour tous les champs");
+                        return false;
+                    }
+                }
+            </script>
+        </form>
+    </div>
+</body>
+</html>

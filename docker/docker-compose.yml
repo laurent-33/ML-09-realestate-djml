@@ -1,0 +1,71 @@
+version: "3.0"
+services:
+  realestate_notebook:
+    build:
+      context: .
+    container_name: realestate_notebook
+    image: jupyter-image-custom2
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    ports:
+      - 8888:8888
+      - 6006:6006
+    volumes:
+      - ../:/usr/src/realestate
+    env_file:
+      - auth.env
+    command: sh -c "
+      cd ../../usr/src/realestate/scripts
+      && jupyter notebook --ip='0.0.0.0' --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''"
+    
+  realestate_api:
+    container_name: realestate_api
+    image: jupyter-image-custom2
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    ports:
+      - 5000:5000
+    volumes:
+      - ../:/usr/src/realestate
+    command: sh -c "
+      cd ../../usr/src/realestate/scripts
+      && python api_flask.py"
+
+  realestate_mlflow:
+    container_name: realestate_mlflow
+    image: jupyter-image-custom2
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    expose:
+      - "3000"
+    ports:
+      - 3000:3000
+    volumes:
+      - ../:/usr/src/realestate
+    command: sh -c "
+      cd ../../usr/src/realestate/scripts
+      && mlflow server --host "0.0.0.0:3000""
+
+  realestate_app:
+    container_name: realestate_app
+    image: jupyter-image-custom2
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    volumes:
+      - ../:/usr/src/realestate
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: sh -c "
+      cd ../../usr/src/realestate/scripts
+      && python app.py"
