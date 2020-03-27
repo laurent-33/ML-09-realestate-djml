@@ -39,7 +39,7 @@ def start_scrap(last_csv_update_date):
                     bien_immo = scrap(ref)
                     #check if scrapped property's publish date is post last update
                     if (bien_immo["publish_date"] == None or bien_immo["publish_date"] > last_csv_update_date) \
-                            and time() - t_start < 10:
+                            and time() - t_start < 30*60: # scrap duration limitation to 30minutes max
 
                         biens.append(bien_immo)
                     else:
