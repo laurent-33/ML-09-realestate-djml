@@ -28,7 +28,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             headers={'Accept-Language' : "fr-FR"},
             params={
                 'code': "/7KfhTY2uDDOl0HjdzwgpAoQr/ETPMtLBKjPfH26eh58vEakBqjXYA==",
-                'ref' : refs[0]
+                'ref' : ref
                 }
             )
 
